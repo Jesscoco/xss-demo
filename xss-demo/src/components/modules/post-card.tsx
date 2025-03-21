@@ -42,7 +42,9 @@ export default function PostCard({ post, onAddComment, onDeleteComment, onEditCo
           {post.comments.map((comment) => (
             <div key={comment.id} className="border-t pt-4">
               <div className="flex items-center mb-2">
-                <span className="font-semibold text-[#e86225]">{comment.user}</span>
+                {/* <span className="font-semibold text-[#e86225]">{comment.user}</span> */}
+                <p className="text-gray-700 text-sm" dangerouslySetInnerHTML={{ __html: comment.content }}></p>
+
                 {comment.isEditable && (
                   <div className="ml-auto space-x-2">
                     {editingCommentId === comment.id ? (
@@ -85,7 +87,7 @@ export default function PostCard({ post, onAddComment, onDeleteComment, onEditCo
                   rows={2}
                 />
               ) : (
-                <p className="text-gray-700 text-sm">{comment.content}</p>
+                <p className="text-red text-sm">{comment.content}</p>
               )}
             </div>
           ))}
