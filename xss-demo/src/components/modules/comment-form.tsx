@@ -15,20 +15,22 @@ export default function CommentForm({ postId, onAddComment, user }: CommentFormP
   const [isAnonymous, setIsAnonymous] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!content.trim()) return
-
+    e.preventDefault();
+  
+    if (!content.trim()) return;
+  
+    // Attention : Ceci est intentionnellement non sécurisé pour la démonstration
     const newComment: Comment = {
-      id: Date.now(), // Simple ID generation
+      id: Date.now(),
       user: isAnonymous ? "Anonymous" : user,
-      content,
+      content: content, // Contenu non filtré
       isEditable: !isAnonymous,
-    }
-
-    onAddComment(postId, newComment)
-    setContent("")
-  }
+    };
+  
+    onAddComment(postId, newComment);
+    setContent("");
+  };
+  
 
   return (
     <form onSubmit={handleSubmit} className="mt-4 border-t pt-4">
